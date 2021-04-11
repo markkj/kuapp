@@ -2,51 +2,61 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
+import Dot from 'react-native-vector-icons/Octicons';
 import {
     PieChart,
 } from "react-native-chart-kit";
+import { ProgressBar } from 'react-native-multicolor-progress-bar';
 import { Dimensions } from "react-native";
 
 
 const Header = props => {
     const screenWidth = Dimensions.get("window").width;
-    const data = [
-        {
-            name: "Seoul",
-            population: 21500000,
-            color: "rgba(131, 167, 234, 1)",
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 15
-        },
-        {
-            name: "Toronto",
-            population: 2800000,
-            color: "#F00",
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 15
-        },
-        {
-            name: "Beijing",
-            population: 527612,
-            color: "red",
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 15
-        },
-        {
-            name: "New York",
-            population: 8538000,
-            color: "#ffffff",
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 15
-        },
-        {
-            name: "Moscow",
-            population: 11920000,
-            color: "rgb(0, 0, 255)",
-            legendFontColor: "#7F7F7F",
-            legendFontSize: 15
-        }
-    ];
+    const screenHight = Dimensions.get('window').height / 5;
+    const data = {
+        total: 15000,
+        dataList: [
+            {
+                name: "ค่าใช้จ่าย",
+                present: 8000,
+                value: 9000,
+                color: "#F54D56",
+            },
+            {
+                name: "การลงทุน",
+                present: 3000,
+                value: 3000,
+                color: "#337DF1",
+            },
+            {
+                name: "เงินออม",
+                present: 800,
+                value: 1500,
+                color: "#30C58B",
+            },
+            {
+                name: "เป้าหมาย",
+                present: 800,
+                value: 1500,
+                color: "#F6D55C",
+            }
+        ]
+    };
+    const progressBarData = []
+    
+    const legendShow = data.dataList.map((val, key) => {
+        progressBarData.push({color:val.color,value:val.present / data.total})
+        return <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '80%' }} key={key}>
+            <Dot
+                name='primitive-dot'
+                size={25}
+
+                color={val.color} />
+            <Text style={{ fontFamily: 'Kanit', fontSize: 13 }}>{val.name}</Text>
+            <Text style={{ fontFamily: 'Kanit', fontSize: 13 }}>{val.value / data.total * 100} %</Text>
+        </View>
+    })
+    
     return (
         <View style={styles.container}>
 
@@ -70,36 +80,67 @@ const Header = props => {
                     />
 
                 </View>
-                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, margin: '5%' }}>
-                    <Text style={{ paddingTop: 20, paddingLeft: 25, fontFamily: 'Kanit', fontSize: 18 }}>แผนของคุณ</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <PieChart
-                            data={data}
-                            width={screenWidth}
-                            height={220}
-                            chartConfig={{
-                                backgroundColor: "#e26a00",
-                                backgroundGradientFrom: "#fb8c00",
-                                backgroundGradientTo: "#ffa726",
-                                decimalPlaces: 2, // optional, defaults to 2dp
-                                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                                style: {
-                                  borderRadius: 16
-                                },
-                                propsForDots: {
-                                  r: "6",
-                                  strokeWidth: "2",
-                                  stroke: "#ffa726"
-                                }
-                              }}
-                            accessor={"population"}
-                            backgroundColor={"transparent"}
-                            paddingLeft={"15"}
-                            center={[10, 50]}
-                            absolute
+                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, marginLeft: '5%',marginRight:'5%' ,marginTop:'2%',marginBottom:'3%'}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingLeft: 25, paddingRight: 25, alignItems: 'center' }}>
+
+                        <Text style={{ fontFamily: 'Kanit', fontSize: 20 }}>แผนของคุณ</Text>
+                        <Icon
+                            name='settings'
+                            size={18}
+
+                            color={'#C4C4C4'}
                         />
                     </View>
+
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View style={{ width: '55%', height: 'auto' }}>
+                            <PieChart
+                                data={data.dataList}
+                                width={screenWidth}
+                                height={screenHight}
+                                chartConfig={{
+                                    backgroundGradientFrom: "#1E2923",
+                                    backgroundGradientFromOpacity: 0,
+                                    backgroundGradientTo: "#08130D",
+                                    backgroundGradientToOpacity: 0.5,
+                                    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+                                    strokeWidth: 2, // optional, default 3
+                                    barPercentage: 0.5,
+                                    useShadowColorFromDataset: false // optional
+                                }}
+                                accessor={"value"}
+                                backgroundColor={"transparent"}
+
+                                hasLegend={false}
+                                absolute
+                            />
+                        </View>
+                        <View style={{ width: '45%' }}>
+                            <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>
+                                สัดส่วน
+                            </Text>
+                            <View style={{ flexDirection: 'column' }}>
+                                {
+                                    legendShow
+                                }
+                            </View>
+                        </View>
+
+
+                    </View>
+                    <View style={{ paddingLeft: 20, paddingRight: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>ความคืบหน้าของแผน</Text>
+                        <Text style={{ fontFamily: 'Kanit', fontSize: 22 }}>74%</Text>
+                    </View>
+                    <View style={{flexDirection:'row',width:'100%',alignItems:'center',marginLeft:25,marginRight:25,marginTop:2,}}>
+                        <ProgressBar
+                            arrayOfProgressObjects={progressBarData}
+                            backgroundBarStyle={{backgroundColor: '#EFF1F5',borderRadius: 8.5,height: 14,width:Dimensions.get('window').width/1.35}}
+                        />
+                    </View>
+
+
+
                 </View>
 
             </LinearGradient>
@@ -121,7 +162,7 @@ const styles = StyleSheet.create({
     },
     gradient: {
         width: '100%',
-        height: 350,
+        height: Dimensions.get('window').height / 1.9,
     },
 
 
