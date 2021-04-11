@@ -5,6 +5,7 @@ import AppLoading from 'expo-app-loading';
 import Navigator from './navigations/nav';
 import * as Font from "expo-font";
 
+
 export default function App() {
   const [fontsLoaded , setFontsLoaded] = useState(false)
   const fetchFonts = () => {

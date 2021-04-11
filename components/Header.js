@@ -8,9 +8,10 @@ import {
 } from "react-native-chart-kit";
 import { ProgressBar } from 'react-native-multicolor-progress-bar';
 import { Dimensions } from "react-native";
-
+import { useState } from 'react';
 
 const Header = props => {
+    const [openMenu, setOpenMenu] = useState(false);
     const screenWidth = Dimensions.get("window").width;
     const screenHight = Dimensions.get('window').height / 5;
     const data = {
@@ -43,9 +44,9 @@ const Header = props => {
         ]
     };
     const progressBarData = []
-    
+
     const legendShow = data.dataList.map((val, key) => {
-        progressBarData.push({color:val.color,value:val.present / data.total})
+        progressBarData.push({ color: val.color, value: val.present / data.total })
         return <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '80%' }} key={key}>
             <Dot
                 name='primitive-dot'
@@ -56,7 +57,7 @@ const Header = props => {
             <Text style={{ fontFamily: 'Kanit', fontSize: 13 }}>{val.value / data.total * 100} %</Text>
         </View>
     })
-    
+
     return (
         <View style={styles.container}>
 
@@ -65,22 +66,23 @@ const Header = props => {
                 colors={['#337DF1', '#00AEEE']}
             >
 
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingRight: 25, paddingTop: 30 }}>
 
-
-
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingRight: 25, paddingTop: 40 }}>
                     <Icon
                         name='menu'
                         size={35}
                         style={{ paddingLeft: '5%' }}
-                        color='#FFF' />
+                        color='#FFF'
+                        onPress={() => props.navigation.openDrawer()} />
+
+
                     <Image
                         style={{ height: 45, width: 45 }}
                         source={require('../assets/profile.png')}
                     />
 
                 </View>
-                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, marginLeft: '5%',marginRight:'5%' ,marginTop:'2%',marginBottom:'3%'}}>
+                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, marginLeft: '5%', marginRight: '5%', marginTop: '2%', marginBottom: '5%' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingLeft: 25, paddingRight: 25, alignItems: 'center' }}>
 
                         <Text style={{ fontFamily: 'Kanit', fontSize: 20 }}>แผนของคุณ</Text>
@@ -132,10 +134,10 @@ const Header = props => {
                         <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>ความคืบหน้าของแผน</Text>
                         <Text style={{ fontFamily: 'Kanit', fontSize: 22 }}>74%</Text>
                     </View>
-                    <View style={{flexDirection:'row',width:'100%',alignItems:'center',marginLeft:25,marginRight:25,marginTop:2,}}>
+                    <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', marginLeft: 25, marginRight: 25, marginTop: 2, }}>
                         <ProgressBar
                             arrayOfProgressObjects={progressBarData}
-                            backgroundBarStyle={{backgroundColor: '#EFF1F5',borderRadius: 8.5,height: 14,width:Dimensions.get('window').width/1.35}}
+                            backgroundBarStyle={{ backgroundColor: '#EFF1F5', borderRadius: 8.5, height: 14, width: Dimensions.get('window').width / 1.35 }}
                         />
                     </View>
 
