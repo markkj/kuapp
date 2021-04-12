@@ -11,7 +11,7 @@ import { Dimensions } from "react-native";
 import { useState } from 'react';
 
 const Header = props => {
-    const [openMenu, setOpenMenu] = useState(false);
+    
     const screenWidth = Dimensions.get("window").width;
     const screenHight = Dimensions.get('window').height / 5;
     const data = {
@@ -53,8 +53,8 @@ const Header = props => {
                 size={25}
 
                 color={val.color} />
-            <Text style={{ fontFamily: 'Kanit', fontSize: 13 }}>{val.name}</Text>
-            <Text style={{ fontFamily: 'Kanit', fontSize: 13 }}>{val.value / data.total * 100} %</Text>
+            <Text style={{ fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 25 }}>{val.name}</Text>
+            <Text style={{ fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 25 }}>{val.value / data.total * 100} %</Text>
         </View>
     })
 
@@ -73,7 +73,7 @@ const Header = props => {
                         size={35}
                         style={{ paddingLeft: '5%' }}
                         color='#FFF'
-                        onPress={() => props.navigation.openDrawer()} />
+                        onPress={() => {props.navigation.openDrawer()}} />
 
 
                     <Image
@@ -82,10 +82,10 @@ const Header = props => {
                     />
 
                 </View>
-                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, marginLeft: '5%', marginRight: '5%', marginTop: '2%', marginBottom: '5%' }}>
+                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, marginLeft: '5%', marginRight: '5%', marginTop: '2%', marginBottom: '3%' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingLeft: 25, paddingRight: 25, alignItems: 'center' }}>
 
-                        <Text style={{ fontFamily: 'Kanit', fontSize: 20 }}>แผนของคุณ</Text>
+                        <Text style={{ fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 18 }}>แผนของคุณ</Text>
                         <Icon
                             name='settings'
                             size={18}
@@ -94,7 +94,7 @@ const Header = props => {
                         />
                     </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between',height:'54%' }}>
                         <View style={{ width: '55%', height: 'auto' }}>
                             <PieChart
                                 data={data.dataList}
@@ -118,7 +118,7 @@ const Header = props => {
                             />
                         </View>
                         <View style={{ width: '45%' }}>
-                            <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>
+                            <Text style={{ fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 21 }}>
                                 สัดส่วน
                             </Text>
                             <View style={{ flexDirection: 'column' }}>
@@ -131,13 +131,18 @@ const Header = props => {
 
                     </View>
                     <View style={{ paddingLeft: 20, paddingRight: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>ความคืบหน้าของแผน</Text>
-                        <Text style={{ fontFamily: 'Kanit', fontSize: 22 }}>74%</Text>
+                        <Text style={{ fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 22 }}>ความคืบหน้าของแผน</Text>
+                        <Text style={{ fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 18 }}>74%</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', marginLeft: 25, marginRight: 25, marginTop: 2, }}>
+                    <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', marginTop: 2, justifyContent: 'center' }}>
                         <ProgressBar
                             arrayOfProgressObjects={progressBarData}
-                            backgroundBarStyle={{ backgroundColor: '#EFF1F5', borderRadius: 8.5, height: 14, width: Dimensions.get('window').width / 1.35 }}
+                            backgroundBarStyle={{
+                                backgroundColor: '#EFF1F5',
+                                borderRadius: 8.5,
+                                height: Dimensions.get('window').height * 2 / 100,
+                                width: Dimensions.get('window').width / 1.35
+                            }}
                         />
                     </View>
 
@@ -164,7 +169,7 @@ const styles = StyleSheet.create({
     },
     gradient: {
         width: '100%',
-        height: Dimensions.get('window').height / 1.9,
+        height: Dimensions.get('window').height * 0.48,
     },
 
 

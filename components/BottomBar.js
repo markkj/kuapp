@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import { LinearGradient } from 'expo-linear-gradient';
 const BottomBar = (props) => {
-    console.log(props.navigation.state);
+
     return (
         <View style={styles.wrapper}>
             <View style={styles.addButton}>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     wrapper: {
         position: 'absolute',
         bottom: 0,
-        height: 60,
+        height: Dimensions.get('window').height * 0.045,
         width: '100%'
     },
     container: {
@@ -62,20 +62,20 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
 
         backgroundColor: 'white',
-        height: 40,
+        height: Dimensions.get('window').height * 0.4,
         width: '100%',
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 8,
+            height: 12,
         },
-        shadowOpacity: 0.46,
-        shadowRadius: 11.14,
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
         elevation: 17,
         paddingHorizontal: 80,
-        paddingTop: 5,
+        paddingTop:5,
     },
     normalText: {
         fontFamily: 'Kanit',
@@ -89,8 +89,9 @@ const styles = StyleSheet.create({
     },
     addButton: {
         position: 'absolute',
-        bottom: 30,
-        zIndex: 1,
+        bottom: 2,
+        elevation: 20,
+        zIndex: 2,
         marginHorizontal: '42.5%',
 
     },

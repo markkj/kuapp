@@ -40,7 +40,7 @@ const Card = (props) => {
                 <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>
                     8,000/9,000
                 </Text>
-                <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center',paddingTop:4 }}>
                     <ProgressBar
                         arrayOfProgressObjects={progressBarData}
                         backgroundBarStyle={{ backgroundColor: data.color2 }}
@@ -55,6 +55,8 @@ export default Card
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection:'column',
+        justifyContent:'space-between',
         borderRadius: 15,
         backgroundColor: '#FFFFFF',
         width: Dimensions.get('window').width / 2.4,
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
 
         paddingLeft: 20,
         paddingTop: 15,
+        paddingBottom:20,
         margin: 5,
     },
     cycleNav: {
