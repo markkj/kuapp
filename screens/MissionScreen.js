@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import BottomBar from '../components/BottomBar';
 import Header from '../components/Header';
-import Content from '../components/Home/Content';
-const HomeScreen = (props) => {
+import Content from '../components/Mission/Content';
+const MissionScreen = (props) => {
     return (
         <View >
             <Header {...props} />
@@ -16,4 +16,4 @@ const HomeScreen = (props) => {
 
 
 const styles = StyleSheet.create({})
-export default HomeScreen;
+export default MissionScreen;
