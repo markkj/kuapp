@@ -31,7 +31,7 @@ const Content = (props) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 15 }}>
                 <View style={{ flexDirection: 'column', alignItems: 'flex-end', marginHorizontal: 4 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <View style={[styles.Dot, { backgroundColor: '#2B47FC', borderColor: 'white', borderWidth: 1, marginRight: 4 }]}></View>
+                        <View style={[styles.Dot, { backgroundColor: '#337DF1',marginRight: 4}, props.selected ? styles.dotBorder:{borderWidth:0}]}></View>
                         <Text style={[styles.normalText,props.selected ? styles.colorTextSelected:styles.colorTextUnSelected]}>คงเหลือ</Text>
                     </View>
                     <Text style={[styles.textAmount,props.selected ? styles.colorTextSelected:styles.colorTextUnSelected]}>
@@ -83,5 +83,10 @@ const styles = StyleSheet.create({
     },
     colorTextUnSelected: {
         color: '#203CFA'
+    },
+    dotBorder:{
+        borderColor: 'white', 
+        borderWidth: 1, 
+        
     }
 })

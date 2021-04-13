@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const BottomBar = (props) => {
 
     return (
+        
         <View style={styles.wrapper}>
             <View style={styles.addButton}>
                 <LinearGradient
@@ -27,8 +28,8 @@ const BottomBar = (props) => {
                         <Icon
                             name="flag-checkered"
                             size={20}
-                            color={props.navigation.state.key == "Home" ? '#337DF1' : '#C4C4C4'} />
-                        <Text style={[styles.normalText, props.navigation.state.key == "Home" ? styles.colorSeleted : styles.colorUnSeleted]} >วางแผน</Text>
+                            color={props.navigation.state.routeName == "Home" ? '#337DF1' : '#C4C4C4'} />
+                        <Text style={[styles.normalText, props.navigation.state.routeName == "Home" ? styles.colorSeleted : styles.colorUnSeleted]} >วางแผน</Text>
                     </View>
                 </TouchableOpacity>
 
@@ -37,8 +38,8 @@ const BottomBar = (props) => {
                         <Icon2
                             name="stars"
                             size={20}
-                            color={props.navigation.state.key == "Mission" ? '#337DF1' : '#C4C4C4'} />
-                        <Text style={[styles.normalText, props.navigation.state.key == "Mission" ? styles.colorSeleted : styles.colorUnSeleted]} >ภารกิจ</Text>
+                            color={props.navigation.state.routeName == "Mission" ? '#337DF1' : '#C4C4C4'} />
+                        <Text style={[styles.normalText, props.navigation.state.routeName == "Mission" ? styles.colorSeleted : styles.colorUnSeleted]} >ภารกิจ</Text>
                     </View>
                 </TouchableOpacity>
 

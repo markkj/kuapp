@@ -9,7 +9,7 @@ const Card = (props) => {
         if (props.selected) {
             return <LinearGradient
                 style={{ width: '100%', height: '100%' }}
-                colors={['rgba(25,55,254,1)', 'rgba(121,96,249,1)']}
+                colors={['rgba(51,125,241,1)', 'rgba(0,174,238,1)']}
             >
                 <Content {...props}/>
             </LinearGradient>

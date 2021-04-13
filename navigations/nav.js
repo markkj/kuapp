@@ -11,6 +11,8 @@ import Card from './Card';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/Feather';
 import Icon3 from 'react-native-vector-icons/MaterialIcons';
+import PlaningScreen from '../screens/PlaningScreen';
+import stackNav from './stackNav';
 const CardPlan = (props) => {
     return (
         <View>
@@ -28,13 +30,13 @@ const CustomDrawerNavigation = (props) => {
                 <View style={[styles.cycleNav, { left: -60, top: -50, }]}>
                     <LinearGradient
                         style={{ width: '100%', height: '100%' }}
-                        colors={['rgba(82,100,249,1)', 'rgba(0,219,222,1)']}
+                        colors={['rgba(51,125,241,1)', 'rgba(4,171,239,1)']}
                     />
                 </View>
                 <View style={[styles.cycleNav, { left: -50, top: -60, }]}>
                     <LinearGradient
                         style={{ width: '100%', height: '100%' }}
-                        colors={['rgba(198,48,248,0)', 'rgba(47,86,248,1)']}
+                        colors={['rgba(4,171,239,0)', 'rgba(47,86,248,1)']}
                     />
                 </View>
 
@@ -216,17 +218,18 @@ const styles = StyleSheet.create({
 
 const DrawerNavigator = createDrawerNavigator({
     Home: {
-        screen: HomeScreen,
+        screen: stackNav,
         navigationOptions: { headerShown: false }
     },
     Result: {
         screen: ResultScreen,
         navigationOptions: { headerShown: false }
     },
-    Mission:{
-        screen:MissionScreen,
+    Mission: {
+        screen: MissionScreen,
         navigationOptions: { headerShown: false }
-    }
+    },
+    
 },
     {
         contentComponent: CustomDrawerNavigation,

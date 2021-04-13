@@ -82,8 +82,8 @@ const Header = props => {
                     />
 
                 </View>
-                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, marginLeft: '5%', marginRight: '5%', marginTop: '2%', marginBottom: '3%' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingLeft: 25, paddingRight: 25, alignItems: 'center' }}>
+                <View style={{ flex: 1, backgroundColor: 'white', borderRadius: 40, marginLeft: '5%', marginRight: '5%',marginTop:'2%', marginBottom: '3%' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between',paddingTop: '4%', paddingLeft: 25, paddingRight: 25, alignItems: 'center' }}>
 
                         <Text style={{ fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 18 }}>แผนของคุณ</Text>
                         <Icon
@@ -91,6 +91,7 @@ const Header = props => {
                             size={18}
 
                             color={'#C4C4C4'}
+                            onPress={() => props.navigation.navigate('Planing')}
                         />
                     </View>
 

@@ -9,15 +9,15 @@ import axios from 'axios';
 
 
 const HomeScreen = (props) => {
-    const [data, setData] = useState({});
-    console.log(baseURL + 'profile/1');
-    useEffect(() => {
-        axios.get(baseURL + 'profile/1')
-            .then((response) => {
-                setData({data:response.data})
-            })
-            .catch((err) => { console.log(err) })
-    }, []);
+    // const [data, setData] = useState({});
+    // console.log(baseURL + 'profile/1');
+    // useEffect(() => {
+    //     axios.get(baseURL + 'profile/1')
+    //         .then((response) => {
+    //             setData({data:response.data})
+    //         })
+    //         .catch((err) => { console.log(err) })
+    // }, []);
 
     
     return (
