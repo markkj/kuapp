@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Dimensions, ScrollView, LayoutAnimation, Platform, UIManager, TouchableOpacity } from 'react-native'
-import { VictoryPie } from 'victory-native';
 import Icon from 'react-native-vector-icons/Entypo';
-import Dot from 'react-native-vector-icons/Octicons';
+import Icon2 from 'react-native-vector-icons/Ionicons';
 import InvestCard from './InvestCard';
 import numberWithCommas from '../../utils/Functional';
+import InvestPieChart from './InvestPieChart';
+import InvestGraphChart from './InvestGraphChart';
 const InvestConent = (props) => {
     const data = props.data
     const [isExpand, setIsExpand] = useState(false);
-    const screenHight = Dimensions.get('window').height / 2.9;
-    const categoryColor = ['#30C58B', '#337DF1', '#F6D55C']
+    
+
     const dataTransaction = [
         {
             name: "กองทุนรวม",
@@ -52,6 +53,14 @@ const InvestConent = (props) => {
             profit: -0.75,
         }
     ]
+    let averageProfit = 0
+    const showCard = []
+    dataList.map((val,key)=>{
+        averageProfit += val.profit
+        return showCard.push( <View style={{ marginHorizontal: 3 }}>
+            <InvestCard data={val} key={key} />
+        </View>)
+    })
     if (Platform.OS === 'android') {
         UIManager.setLayoutAnimationEnabledExperimental(true);
     }
@@ -62,69 +71,16 @@ const InvestConent = (props) => {
     return (
         <View style={{ width: '100%', marginTop: '2%', alignItems: 'center' }}>
             <View style={{ padding: 20, paddingHorizontal: 25, width: '90%', backgroundColor: 'white', borderRadius: 40 }}>
-                <Text style={[styles.textBold, { fontSize: 20 }]}>พอร์ตปัจจุบัน</Text>
-                <View style={{ flexDirection: 'row' }}>
 
-                    <View style={{ borderWidth: 0, width: '60%', }}>
-                        <View style={{ borderWidth: 0, left: -120, top: -35, width: '65%', height: '22%' }}>
-                            <VictoryPie
-                                animate={{
-                                    duration: 2000,
-                                    onLoad: { duration: 100 }
-                                }}
-                                height={screenHight}
+                <ScrollView
+                    horizontal
+                    snapToInterval={Dimensions.get('window').width * 0.79}
+                    decelerationRate="fast"
+                >
+                    <InvestPieChart dataList={dataList} />
+                    <InvestGraphChart data={data} dataList={dataList} />
+                </ScrollView>
 
-                                colorScale={categoryColor}
-                                labelPosition="centroid"
-                                labelRadius={() => 25}
-                                data={dataList}
-                                x="name"
-                                y="percent"
-                                labels={({ datum }) => datum.percent + "%"}
-                                style={{ labels: { fill: "white", fontSize: 16 } }}
-                            />
-                        </View>
-                    </View>
-                    <View style={{ borderWidth: 0, width: '40%' }}>
-                        <View style={{ flexDirection: "row", alignItems: 'center', borderWidth: 0 }}>
-                            <Text style={[styles.text, { marginRight: 4 }]}>อัตราผลตอบแทน</Text>
-                            <Icon
-                                name="help-with-circle"
-                                size={10}
-                                color="rgba(51, 125, 241, 0.3)" />
-                        </View>
-                        <View style={{ flexDirection: 'column' }}>
-                            <View style={{ flexDirection: 'row', alignItems: 'flex-end' }} >
-
-                                <Text style={[{ fontFamily: 'Kanit-SemiBold', fontSize: 30 }]}>4.95 </Text>
-                                <Text style={[styles.text, { fontSize: 20 }]}>%/ปี</Text>
-                            </View>
-                        </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { fontSize: 12, marginRight: 4 }]}>ความเสี่ยงปานกลาง</Text>
-                            <Icon
-                                name="help-with-circle"
-                                size={10}
-                                color="rgba(51, 125, 241, 0.3)" />
-                        </View>
-                        <View style={{ padding: 15, paddingBottom: 0 }}>
-                            {
-                                dataList.map((val, key) => {
-                                    return (
-                                        <View style={{ flexDirection: 'row' }} key={key}>
-                                            <Dot
-                                                name='primitive-dot'
-                                                size={25}
-
-                                                color={categoryColor[key]} />
-                                            <Text style={[styles.text, { marginLeft: 5 }]}>{val.name}</Text>
-                                        </View>
-                                    )
-                                })
-                            }
-                        </View>
-                    </View>
-                </View>
 
             </View>
             <View style={{ height: '12%', marginVertical: '2%', width: Dimensions.get('window').width * 0.9, borderWidth: 0 }}>
@@ -134,11 +90,28 @@ const InvestConent = (props) => {
                     contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
                     style={{ borderWidth: 0, width: '100%' }}
                 >
-                    <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 0 }}>
+                        <View style={{ marginHorizontal: 3 }}>
+                            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'white', paddingHorizontal: 3, width: Dimensions.get('window').height * 0.15, height: Dimensions.get('window').height * 0.15, paddingVertical: 10, borderRadius: 10 }}>
+                                <Text style={{ fontFamily: 'Kanit' }}>ผลตอบแทน</Text>
+                                <Text style={{ fontFamily: 'Kanit' }}>เฉลี่ยน ณ ปัจจุบัน</Text>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 0 }}>
+                                    <Icon2
+                                        name={averageProfit > 0 ? "trending-up-sharp" : "trending-down-sharp"}
+                                        size={30}
+                                        color={averageProfit > 0 ? '#30C58B' : '#F54D56'}
+                                        style={{ marginRight: 5 }}
+                                    />
+                                    <View style={{ backgroundColor: averageProfit > 0 ? '#30C58B' : '#F54D56', paddingHorizontal: 10, paddingVertical: 2, borderRadius: 20 }}>
+                                        <Text style={{ fontFamily: 'Kanit', color: 'white', fontSize: 18 }}>{averageProfit}%</Text>
+                                    </View>
+                                </View>
+
+                            </View>
+                        </View>
                         {
-                            dataList.map((val, key) => {
-                                return <InvestCard data={val} key={key} />
-                            })
+                            showCard
+
                         }
 
                     </View>
@@ -148,12 +121,12 @@ const InvestConent = (props) => {
             <View style={{ position: isExpand ? 'absolute' : 'relative', marginVertical: '0%', height: isExpand ? Dimensions.get('window').height : '100%', backgroundColor: 'white', width: '100%', padding: 20, borderTopRightRadius: 40, borderTopLeftRadius: 40 }}>
 
                 <View style={{ width: '100%', borderWidth: 0, height: Dimensions.get('window').height }}>
-                    <TouchableOpacity activeOpacity={0.8} onPress={changeLayout} style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                    <TouchableOpacity activeOpacity={0.8} onPress={changeLayout} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                         <Text style={[styles.textBold, { fontSize: 25, paddingHorizontal: 15 }]}>รายการ</Text>
                         <Icon
                             name={isExpand ? "chevron-thin-down" : "chevron-thin-up"}
                             size={30}
-                            style={{marginRight:10}}
+                            style={{ marginRight: 10 }}
                         />
                     </TouchableOpacity>
                     <ScrollView

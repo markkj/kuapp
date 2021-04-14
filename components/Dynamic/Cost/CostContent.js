@@ -32,7 +32,7 @@ const CostContent = (props) => {
             total_ex: "125"
         }
     ]
-    const periodMenu = ['วัน', 'อาทิตย์', 'เดือน', 'ปี']
+    const periodMenu = ['วัน', 'สัปดาห์', 'เดือน', 'ปี']
     const periodMenuShow = []
     if (comChange.comp === 'list') {
         Comp = <List filter={filter} dataList={dataList} />

@@ -8,7 +8,6 @@ const Content = (props) => {
     const data = props.data
     const ComponentShow = () => {
         if(data.name == "การลงทุน"){
-            console.log(data);
             return <InvestConent {...props} data={data} />
         }
     }
