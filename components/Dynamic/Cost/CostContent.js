@@ -11,6 +11,7 @@ const CostContent = (props) => {
         comp: 'list'
     })
     const [filter, setFilter] = useState('all')
+    const [periodSelect, setPeriodSelect] = useState('วัน')
     const dataList = [
         {
             date: '8 มีนาคม 2021',
@@ -31,11 +32,34 @@ const CostContent = (props) => {
             total_ex: "125"
         }
     ]
+    const periodMenu = ['วัน', 'อาทิตย์', 'เดือน', 'ปี']
+    const periodMenuShow = []
     if (comChange.comp === 'list') {
         Comp = <List filter={filter} dataList={dataList} />
+        periodMenu.map((val, key) => {
+            if (val !== 'ปี') {
+                return periodMenuShow.push(
+                    <TouchableOpacity onPress={() => setPeriodSelect(val)} key={key}>
+                        <Text key={key} style={periodSelect == val ? styles.periodSelected : styles.periodUnSelected}>{val}</Text>
+                    </TouchableOpacity>
 
+                )
+            }
+
+        })
     } else if (comChange.comp === 'result') {
         Comp = <Result filter={filter} dataList={dataList} />
+        periodMenu.map((val, key) => {
+
+            return periodMenuShow.push(
+                <TouchableOpacity onPress={() => setPeriodSelect(val)}  key={key}>
+                    <Text key={key} style={periodSelect == val ? styles.periodSelected : styles.periodUnSelected}>{val}</Text>
+                </TouchableOpacity>
+
+            )
+
+
+        })
     }
 
     return (
@@ -83,7 +107,12 @@ const CostContent = (props) => {
                         <Text style={[styles.text, { color: "#337DF1", fontSize: Dimensions.get('window').width / 20 }]}>9,000</Text>
                     </View>
                 </View>
-                <View style={{ marginVertical: '5%', height: '100%', backgroundColor: 'white', width: '100%', padding: 20, borderTopRightRadius: 40, borderTopLeftRadius: 40 }}>
+                <View style={{ flexDirection: 'row', height: 40, alignItems: 'center', justifyContent: 'space-between', borderWidth: 0, width: '80%', paddingHorizontal: 20, marginVertical: 10 }}>
+                    {
+                        periodMenuShow
+                    }
+                </View>
+                <View style={{ marginVertical: '0%', height: '100%', backgroundColor: 'white', width: '100%', padding: 20, borderTopRightRadius: 40, borderTopLeftRadius: 40 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: '20%' }}>
                         <TouchableOpacity onPress={() => setComChange({ comp: 'list' })}>
                             <Text style={comChange.comp === 'list' ? styles.menuSelected : styles.munuUnSelected}>รายการ</Text>
@@ -165,6 +194,8 @@ const styles = StyleSheet.create({
     filterFontSelected: { fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 35, color: 'white' },
     filterUnSelected: { backgroundColor: '#E5E5E5', paddingHorizontal: 12, paddingVertical: 2, borderRadius: 10 },
     filterFontUnSeleted: { fontFamily: 'Kanit', fontSize: Dimensions.get('window').width / 35, color: '#C4C4C4' },
+    periodSelected: { fontFamily: 'Kanit-SemiBold', color: 'white', fontSize: Dimensions.get('window').width / 20 },
+    periodUnSelected: { fontFamily: 'Kanit', color: 'white', fontSize: Dimensions.get('window').width / 25 },
 
 
 })

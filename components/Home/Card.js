@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import { ProgressBar } from 'react-native-multicolor-progress-bar';
-
+import numberWithCommas from '../../utils/Functional';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 const Card = (props) => {
 
@@ -32,7 +32,7 @@ const Card = (props) => {
                         {data.name}
                     </Text>
                     <Text style={{ fontFamily: 'Kanit', fontSize: 15, lineHeight: 16, }}>
-                        {data.present}/{data.value}
+                        {numberWithCommas(data.present)}  / {numberWithCommas(data.value)}
                     </Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 4 }}>
@@ -93,6 +93,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         paddingHorizontal: 15,
-        justifyContent:'center'
+        justifyContent: 'center'
     }
 })

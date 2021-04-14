@@ -8,7 +8,6 @@ import {
 } from "react-native-chart-kit";
 import { ProgressBar } from 'react-native-multicolor-progress-bar';
 import { Dimensions } from "react-native";
-import { useState } from 'react';
 
 const Header = props => {
     

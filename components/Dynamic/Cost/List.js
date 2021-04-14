@@ -61,18 +61,18 @@ const List = (props) => {
                     let total_ex = null
                     if (props.filter == 'IN') {
                         total_in = <View style={{ backgroundColor: '#32C68B', paddingVertical: 2, paddingHorizontal: 15, borderRadius: 10, marginLeft: 10 }}>
-                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: 30, textAlign: 'center' }]}>{data.total_in}</Text>
+                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: '100%', textAlign: 'center' }]}>{data.total_in}</Text>
                         </View>
                     } else if (props.filter == 'EX') {
                         total_ex = <View style={{ backgroundColor: '#F54F57', paddingVertical: 2, paddingHorizontal: 15, borderRadius: 10, marginLeft: 10 }}>
-                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: 30, textAlign: 'center' }]}>{data.total_ex}</Text>
+                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: '100%', textAlign: 'center' }]}>{data.total_ex}</Text>
                         </View>
                     } else {
                         total_in = <View style={{ backgroundColor: '#32C68B', paddingVertical: 2, paddingHorizontal: 15, borderRadius: 10, marginLeft: 10 }}>
-                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: 30, textAlign: 'center' }]}>{data.total_in}</Text>
+                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: '100%', textAlign: 'center' }]}>{data.total_in}</Text>
                         </View>
                         total_ex = <View style={{ backgroundColor: '#F54F57', paddingVertical: 2, paddingHorizontal: 15, borderRadius: 10, marginLeft: 10 }}>
-                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: 30, textAlign: 'center' }]}>{data.total_ex}</Text>
+                            <Text style={[styles.text, { color: 'white', fontSize: 16, width: '100%', textAlign: 'center' }]}>{data.total_ex}</Text>
                         </View>
                     }
                     return <View style={{ marginBottom: '2%' }}>

@@ -1,9 +1,17 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions, TextInput } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'
+import InvestConent from './InvestConent'
+import numberWithCommas from '../../utils/Functional';
 const Content = (props) => {
     // const data = props.navigation.state.params.data;
     const data = props.data
+    const ComponentShow = () => {
+        if(data.name == "การลงทุน"){
+            console.log(data);
+            return <InvestConent {...props} data={data} />
+        }
+    }
     return (
         <View >
             <View style={[styles.header, { paddingHorizontal: 20, paddingTop: 20 }]}>
@@ -21,24 +29,23 @@ const Content = (props) => {
             <View style={[styles.wrapper]}>
                 <View style={{ flexDirection: 'row', height: '13%', width: '85%', alignItems: 'center', paddingVertical: 15, paddingHorizontal: 25, backgroundColor: 'white', borderRadius: 10, justifyContent: 'space-between' }}>
                     <View style={{ alignItems: 'flex-start' }}>
-                        <Text style={[styles.text, { color: "#898A8D" }]}>รายรับ</Text>
-                        <Text style={[styles.text, { color: "#30C58B", fontSize: Dimensions.get('window').width / 20 }]}>320</Text>
+                        <Text style={[styles.text, { color: "#898A8D" }]}>สัดส่วน</Text>
+                        <Text style={[styles.text, { color: "#337DF1", fontSize: Dimensions.get('window').width / 20 }]}>{data.percent} %</Text>
                     </View>
                     <View style={{ alignItems: 'center' }}>
-                        <Text style={[styles.text, { color: "#898A8D" }]}>รายจ่าย</Text>
-                        <Text style={[styles.text, { color: "#F54D56", fontSize: Dimensions.get('window').width / 20 }]}>150</Text>
+                        <Text style={[styles.text, { color: "#898A8D" }]}>เฉลี่ยต่อเดือน</Text>
+                        <Text style={[styles.text, { color: "#337DF1", fontSize: Dimensions.get('window').width / 20 }]}>
+                            {numberWithCommas(data.value)}
+                            </Text>
                     </View>
                     <View style={{ alignItems: 'flex-end' }}>
-                        <Text style={[styles.text, { color: "#898A8D" }]}>คงเหลือ</Text>
-                        <Text style={[styles.text, { color: "#337DF1", fontSize: Dimensions.get('window').width / 20 }]}>9,000</Text>
+                        <Text style={[styles.text, { color: "#898A8D" }]}>ทั้งหมด</Text>
+                        <Text style={[styles.text, { color: "#337DF1", fontSize: Dimensions.get('window').width / 20 }]}> {numberWithCommas(data.present)}</Text>
                     </View>
                 </View>
-                <View style={{ marginVertical: '5%', height: '100%', backgroundColor: 'white', width: '100%', padding: 20, borderTopRightRadius: 40, borderTopLeftRadius: 40 }}>
-                    <View>
-                        <Text style={styles.text}>รายการ</Text>
-                        <Text style={styles.text}>สรุปผล</Text>
-                    </View>
-                </View>
+                {
+                    ComponentShow()
+                }
             </View>
 
         </View>
