@@ -1,19 +1,25 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions, TextInput } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'
-import InvestConent from './InvestConent'
+import InvestContent from './InvestContent';
+import GoalComponent from './Goal/GoalComponent'
 import numberWithCommas from '../../utils/Functional';
+import SavingContent from './Saving/SavingContent';
 const Content = (props) => {
     // const data = props.navigation.state.params.data;
     const data = props.data
     const ComponentShow = () => {
-        if(data.name == "การลงทุน"){
-            return <InvestConent {...props} data={data} />
+        if (data.name == "การลงทุน") {
+            return <InvestContent {...props} data={data} />
+        } else if (data.name == "เป้าหมาย") {
+            return <GoalComponent {...props} data={data} />
+        }else if(data.name == "เงินออม"){
+            return <SavingContent {...props} data={data} />
         }
     }
     return (
         <View >
-            <View style={[styles.header, { paddingHorizontal: 20, paddingTop: 20 }]}>
+            <View style={[styles.header, { paddingHorizontal: 20, paddingTop: 5 }]}>
                 <Icon
                     name="left"
                     size={20}
@@ -35,16 +41,19 @@ const Content = (props) => {
                         <Text style={[styles.text, { color: "#898A8D" }]}>เฉลี่ยต่อเดือน</Text>
                         <Text style={[styles.text, { color: "#337DF1", fontSize: Dimensions.get('window').width / 20 }]}>
                             {numberWithCommas(data.value)}
-                            </Text>
+                        </Text>
                     </View>
                     <View style={{ alignItems: 'flex-end' }}>
                         <Text style={[styles.text, { color: "#898A8D" }]}>ทั้งหมด</Text>
                         <Text style={[styles.text, { color: "#337DF1", fontSize: Dimensions.get('window').width / 20 }]}> {numberWithCommas(data.present)}</Text>
                     </View>
                 </View>
+
                 {
                     ComponentShow()
                 }
+
+
             </View>
 
         </View>

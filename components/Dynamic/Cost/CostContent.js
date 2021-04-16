@@ -64,7 +64,7 @@ const CostContent = (props) => {
 
     return (
         <View >
-            <View style={[styles.header, { paddingHorizontal: 20, paddingTop: 20 }]}>
+            <View style={[styles.header, { paddingHorizontal: 20, paddingTop: 15 }]}>
                 <Icon
                     name="left"
                     size={20}
