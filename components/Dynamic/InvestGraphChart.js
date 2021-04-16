@@ -41,7 +41,7 @@ const InvestGraphChart = (props) => {
     const menuSeleteYears = [['1y', 1], ['2y', 2], ['5y', 5], ['10y', 10], ['20y', 20], ['30y', 30]]
     const [yearsSelect, setYearsSelect] = useState(menuSeleteYears[0])
     CalculateFeature(yearsSelect[1])
-    console.log(dataLineInvestAll);
+    
     return (
 
         <View style={{ width: Dimensions.get('window').width * 0.75, borderWidth: 0 }}>

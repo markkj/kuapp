@@ -14,28 +14,30 @@ const List = (props) => {
                 <Text style={[styles.text, { fontSize: 16 }]}>{data.value}</Text>
             </View>
             ex_val = <View style={{ paddingVertical: 2, paddingHorizontal: 15 }}>
-                <Text style={[styles.text, { fontSize: 16 }]}>{}</Text>
+                <Text style={[styles.text, { fontSize: 16 }]}>{ }</Text>
             </View>
         } else if (data.type == "EX" && filter == 'all') {
             ex_val = <View style={{ paddingVertical: 2, paddingHorizontal: 15 }}>
                 <Text style={[styles.text, { fontSize: 16 }]}>{data.value}</Text>
             </View>
             in_val = <View style={{ paddingVertical: 2, paddingHorizontal: 15 }}>
-                <Text style={[styles.text, { fontSize: 16 }]}>{}</Text>
+                <Text style={[styles.text, { fontSize: 16 }]}>{ }</Text>
             </View>
-        }else{
+        } else {
             ex_val = <View style={{ paddingVertical: 2, paddingHorizontal: 15 }}>
                 <Text style={[styles.text, { fontSize: 16 }]}>{data.value}</Text>
             </View>
             in_val = <View style={{ paddingVertical: 2, paddingHorizontal: 15 }}>
-                <Text style={[styles.text, { fontSize: 16 }]}>{}</Text>
+                <Text style={[styles.text, { fontSize: 16 }]}>{ }</Text>
             </View>
         }
-        return <View style={{ paddingHorizontal: 20, paddingVertical: 0 }}>
+        return <View style={{ paddingHorizontal: 20, paddingVertical: 0,marginTop:10 }}>
             <View style={{ alignItems: 'center', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
 
-                <View style={{ flexDirection: 'row', width: '50%' }}>
-                    <Text style={[styles.text, { fontSize: Dimensions.get('window').width / 10, paddingRight: 10 }]}>S</Text>
+                <View style={{ flexDirection: 'row', width: '50%',alignItems:'center' }}>
+                    <View style={{ marginRight: 20, borderRadius: 30 / 2, width: 30, height: 30, backgroundColor: data.type == "IN" ? '#32C68B':'#F54F57' }}>
+
+                    </View>
                     <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
 
                         <Text style={[styles.text]}>{data.ps}</Text>
@@ -95,9 +97,9 @@ const List = (props) => {
                         {
                             data.transactions.map(val => {
                                 if (val.type === props.filter) {
-                                    return <ListItem data={val} filter={props.filter}/>
+                                    return <ListItem data={val} filter={props.filter} />
                                 } else if (props.filter == 'all') {
-                                    return <ListItem data={val} filter={props.filter}/>
+                                    return <ListItem data={val} filter={props.filter} />
                                 }
                             })
                         }

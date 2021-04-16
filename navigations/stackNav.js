@@ -6,6 +6,7 @@ import DynamicScreen from '../screens/DynamicScreen';
 import HomeScreen from '../screens/HomeScreen';
 import MissionScreen from '../screens/MissionScreen';
 import PlaningScreen from '../screens/PlaningScreen';
+import SubMission from '../screens/SubMission';
 
 const StackNav = createStackNavigator({
     Home: {
@@ -22,6 +23,10 @@ const StackNav = createStackNavigator({
     },
     Cost: {
         screen: DynamicScreen,
+        navigationOptions: { headerShown: false }
+    },
+    SubMission:{
+        screen:SubMission,
         navigationOptions: { headerShown: false }
     }
 });

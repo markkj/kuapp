@@ -6,7 +6,7 @@ import InvestCard from './InvestCard';
 import InvestPieChart from './InvestPieChart';
 import InvestGraphChart from './InvestGraphChart';
 import TransactionCotent from './TransactionCotent';
-
+import Icon from 'react-native-vector-icons/Entypo';
 
 const InvestConent = (props) => {
     const data = props.data
@@ -54,15 +54,15 @@ const InvestConent = (props) => {
     ]
     let averageProfit = 0
     const showCard = []
-    dataList.map((val,key)=>{
+    dataList.map((val, key) => {
         averageProfit += val.profit
-        return showCard.push( <View style={{ marginHorizontal: 5 }} key={key}>
-            <InvestCard data={val}  />
+        return showCard.push(<View style={{ marginHorizontal: 5 }} key={key}>
+            <InvestCard data={val} />
         </View>)
     })
     return (
         <View style={{ width: '100%', marginTop: '2%', alignItems: 'center' }}>
-            <View style={{ padding: 20, paddingHorizontal: 25, width: '90%', backgroundColor: 'white', borderRadius: 40,marginVertical:15}}>
+            <View style={{ padding: 20, paddingHorizontal: 25, width: '90%', backgroundColor: 'white', borderRadius: 40, marginVertical: 15 }}>
 
                 <ScrollView
                     horizontal
@@ -85,8 +85,8 @@ const InvestConent = (props) => {
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 0 }}>
                         <View style={{ marginRight: 5 }}>
                             <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'white', paddingHorizontal: 3, width: Dimensions.get('window').height * 0.15, height: Dimensions.get('window').height * 0.15, paddingVertical: 10, borderRadius: 10 }}>
-                                <Text style={{ fontFamily: 'Kanit',fontSize: 12 }}>ผลตอบแทน</Text>
-                                <Text style={{ fontFamily: 'Kanit',fontSize: 12 }}>เฉลี่ยน ณ ปัจจุบัน</Text>
+                                <Text style={{ fontFamily: 'Kanit', fontSize: 12 }}>ผลตอบแทน</Text>
+                                <Text style={{ fontFamily: 'Kanit', fontSize: 12 }}>เฉลี่ยน ณ ปัจจุบัน</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 0 }}>
                                     <Icon2
                                         name={averageProfit > 0 ? "trending-up-sharp" : "trending-down-sharp"}
@@ -105,12 +105,26 @@ const InvestConent = (props) => {
                             showCard
 
                         }
+                        <View style={{ marginRight: 5 }}>
+                            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'white', paddingHorizontal: 3, width: Dimensions.get('window').height * 0.15, height: Dimensions.get('window').height * 0.15, paddingVertical: 10, borderRadius: 10 }}>
+                                <View style={{ borderWidth: 0, justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <Icon
+                                        name="plus"
+                                        size={Dimensions.get('window').height / 11}
+                                        color="#337DF1"
+                                    />
 
+                                </View>
+                                <Text style={[styles.text, { marginBottom: 2 }]}>บัญชีลงทุน</Text>
+
+
+                            </View>
+                        </View>
                     </View>
                 </ScrollView>
             </View>
-            <TransactionCotent dataTransaction={dataTransaction} />        
-            
+            <TransactionCotent dataTransaction={dataTransaction} />
+
         </View >
     )
 }

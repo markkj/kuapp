@@ -1,16 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, SafeAreaView, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, SafeAreaView, View, Dimensions, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign'
+import TransactionCotent from './TransactionCotent';
 
 
-
-const Content = () => {
+const Content = (props) => {
+    const data = props.data
     return (
+        <View>
 
-        <ScrollView style={styles.container} >
-            <View style={styles.ListItem}>
-                
+
+            <View style={[styles.header, { paddingHorizontal: 20, paddingTop: 5 }]}>
+                <Icon
+                    name="left"
+                    size={20}
+                    color='white'
+                    style={{ paddingRight: 20 }}
+                    onPress={() => props.navigation.goBack()}
+                />
+                <Text style={[styles.text, { color: 'white', fontSize: Dimensions.get('window').width / 17 }]}>
+                    ย้อนกลับ
+            </Text>
+
             </View>
-        </ScrollView>
+            <View style={[styles.wrapper]}>
+                <Image
+                    source={data.img}
+                    style={{ width: 150, height: 150, marginVertical: 15 }}
+                />
+                <Text style={[styles.text, { color: 'white', fontSize: 39 ,marginBottom:15}]}>{data.name}</Text>
+                <TransactionCotent dataTransaction={data.dataTransaction} main={data.main} />
+            </View>
+
+        </View>
 
 
     )
@@ -18,19 +40,44 @@ const Content = () => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingBottom:'50%',
-        
-        height:'50%',
-        
+        width: '100%',
+        height: Dimensions.get('window').height * 0.980,
+
     },
-    ListItem: {
-        flex: 1,
-        justifyContent: 'center',
+    wrapper: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        height: Dimensions.get('window').height * 0.8,
+    },
+    gradient: {
+        height: '100%',
+        width: '100%',
+        padding: 20,
+    },
+    text: {
+        fontFamily: 'Kanit'
+    },
+    header: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        marginBottom:25,
-        marginTop:10,
-    }
+        marginTop: '10%',
+        alignItems: 'center',
+        marginBottom: '5%',
+    },
+    settings: {
+        backgroundColor: 'white',
+        margin: 10,
+        borderRadius: 15,
+        padding: 22,
+    },
+    inputs: {
+        fontFamily: 'Kanit',
+        borderBottomWidth: 1,
+        borderBottomColor: '#337DF1',
+        marginHorizontal: '10%',
+    },
+    Boxing: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end', width: '80%', marginVertical: '4%' },
+    unintText: { color: '#898A8D', fontSize: 13 },
 });
+
 
 export default Content;
