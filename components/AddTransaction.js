@@ -49,15 +49,22 @@ const AddTransaction = (props) => {
 
     const onHandlerItemSelect = (Items) => {
         var arr = itemSelect.arr
-        if (arr.indexOf(Items) == -1) {
+        if (categorySelect.name == 'ค่าใช้จ่าย') {
+            arr = []
             arr.push(Items)
+            setItemSelect({ arr: arr, isReload: true })
         } else {
-            arr.splice(arr.indexOf(Items), 1)
+            if (arr.indexOf(Items) == -1) {
+                arr.push(Items)
+            } else {
+                arr.splice(arr.indexOf(Items), 1)
 
+            }
+            setItemSelect({ arr: arr, isReload: true })
         }
-        setItemSelect({ arr: arr, isReload: true })
+
     }
-    
+    console.log(categorySelect.name);
     return (
         <View>
             <View>
@@ -81,9 +88,9 @@ const AddTransaction = (props) => {
                 </View>
             </View>
             <View>
-                <Text style={[styles.text, { textAlign: 'left', fontSize: 18, marginTop: 10 }]}>{dataMapping[props.name].menu[categorySelect.index].SubMenu.name}</Text>
+                <Text style={[styles.text, { textAlign: 'left', fontSize: 15, marginTop: 10 }]}>{dataMapping[props.name].menu[categorySelect.index].SubMenu.name}</Text>
             </View>
-            <View style={{ borderWidth: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '30%', width: '80%', marginHorizontal: 35, marginTop: 10 }}>
+            <View style={{ borderWidth: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '25%', width: '80%', marginHorizontal: 35, marginTop: 10 }}>
                 {
                     dataMapping[props.name].menu[categorySelect.index].SubMenu.list.map((val, key) => {
                         return (
@@ -93,24 +100,24 @@ const AddTransaction = (props) => {
                                     <View style={[itemSelect.arr.indexOf(val) != -1 ? styles.iconLogoSelect : styles.iconLogoUnSelect, { backgroundColor: dataMapping[props.name].menu[categorySelect.index].color }]}>
 
                                     </View>
-                                    <Text style={[{ fontFamily: 'Kanit' }, { fontSize: 16, marginTop: 10, textAlign: 'center' }]} >{val}</Text>
+                                    <Text style={[{ fontFamily: 'Kanit' }, { fontSize: 13, marginTop: 10, textAlign: 'center' }]} >{val}</Text>
                                 </View>
                             </TouchableOpacity>
                         )
                     })
                 }
             </View>
-            <View style={{ paddingHorizontal: 20, borderWidth: 0, alignItems: 'center', marginTop: 10, }}>
+            <View style={{ paddingHorizontal: 20, borderWidth: 0, alignItems: 'center', marginTop: 1, }}>
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                    <Text style={{ fontFamily: 'Kanit', fontSize: 20 }}>จำนวนเงิน</Text>
+                    <Text style={{ fontFamily: 'Kanit', fontSize: 16 }}>จำนวนเงิน</Text>
                     <TextInput
                         style={[styles.inputs, { width: '45%', textAlign: 'center', marginHorizontal: '5%' }]}
 
                     />
-                    <Text style={{ fontFamily: 'Kanit', fontSize: 16 }}>บาท</Text>
+                    <Text style={{ fontFamily: 'Kanit', fontSize: 13 }}>บาท</Text>
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', marginTop: 5 }}>
-                    <Text style={{ fontFamily: 'Kanit', fontSize: 16 }}>บันทึกเพิ่มเติม</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', marginTop: 1 }}>
+                    <Text style={{ fontFamily: 'Kanit', fontSize: 13 }}>บันทึกเพิ่มเติม</Text>
                     <TextInput
                         style={[styles.inputs, { width: '55%', textAlign: 'center', marginHorizontal: '5%' }]}
 
@@ -123,7 +130,7 @@ const AddTransaction = (props) => {
                 </View>
 
             </View>
-            <View style={{ paddingHorizontal: 20, borderWidth: 0, alignItems: 'center', marginTop: 35 }}>
+            <View style={{ paddingHorizontal: 20, borderWidth: 0, alignItems: 'center', marginTop: 25 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                     <View style={[styles.menuCategory, { backgroundColor: dataMapping[props.name].menu[categorySelect.index].color, borderWidth: 0 }]} >
                         <Text style={[styles.text, { color: 'white' }]}>บันทึก</Text>
@@ -155,18 +162,20 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'Kanit',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 10,
     },
     categorySelect: {
         fontFamily: 'Kanit',
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize:10,
     },
     iconLogoSelect: {
-        borderRadius: 60 / 2, width: 60, height: 60,
+        borderRadius: 40 / 2, width: 40, height: 40,
     },
     iconLogoUnSelect: {
-        borderRadius: 50 / 2, width: 50, height: 50,
+        borderRadius: 30 / 2, width: 30, height: 30,
     }, inputs: {
         fontFamily: 'Kanit',
         borderBottomWidth: 1,

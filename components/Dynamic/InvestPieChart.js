@@ -67,7 +67,7 @@ const InvestPieChart = (props) => {
                                             color={categoryColor[key]} />
                                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '80%' }}>
                                             <Text style={[styles.text, { marginLeft: 5 }]}>{val.name}</Text>
-                                            <Text style={[styles.text, { fontSize: 10, marginLeft: 5 }]}>{val.percent}%</Text>
+                                            <Text style={[styles.text, { fontSize: 10, marginLeft: 2 }]}>{val.percent}%</Text>
                                         </View>
                                     </View>
                                 )

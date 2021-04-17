@@ -11,7 +11,7 @@ const Card = (props) => {
     ]
 
     return (
-        <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Cost', { data: data })}>
+        <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Cost', { pageData: data })}>
 
 
             <View style={styles.container}>

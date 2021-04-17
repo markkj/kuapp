@@ -83,8 +83,6 @@ const InvestGraphChart = (props) => {
                             }}
 
                         >
-
-
                             <VictoryLine
                                 style={{
                                     data: { stroke: "#540707" },
@@ -108,9 +106,6 @@ const InvestGraphChart = (props) => {
                                 data={dataLineInvestAll}
 
                             />
-
-
-
                         </VictoryGroup>
                     </VictoryChart>
                     <View style={{ borderWidth: 0, top: -15, width: '86%', alignItems: 'center' }}>
@@ -118,26 +113,24 @@ const InvestGraphChart = (props) => {
                             <View style={{ flexDirection: "column" }}>
                                 <Text style={[styles.text, { fontSize: 12 }]}>ปกติ</Text>
                                 <View style={{ backgroundColor: '#540707', paddingHorizontal: 10, paddingVertical: 2, borderRadius: 5 }}>
-                                    <Text style={{ fontFamily: 'Kanit', color: 'white',fontSize:12 }}>{String(numberWithCommas((dataLineNormal[dataLineNormal.length - 1].y).toFixed(2)))} </Text>
+                                    <Text style={styles.textNumber}>{String(numberWithCommas((dataLineNormal[dataLineNormal.length - 1].y).toFixed(2)))} </Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: "column" }}>
                                 <Text style={[styles.text, { fontSize: 12 }]}>ทบต้น</Text>
                                 <View style={{ backgroundColor: '#F54D56', paddingHorizontal: 10, paddingVertical: 2, borderRadius: 5 }}>
-                                    <Text style={{ fontFamily: 'Kanit', color: 'white',fontSize:12 }}>{String(numberWithCommas((dataLineInvestOnlyStart[dataLineInvestOnlyStart.length - 1].y).toFixed(2)))} </Text>
+                                    <Text style={styles.textNumber}>{String(numberWithCommas((dataLineInvestOnlyStart[dataLineInvestOnlyStart.length - 1].y).toFixed(2)))} </Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: "column", width: '30%' }}>
                                 <Text style={[styles.text, { fontSize: 12 }]}>ทบต้นทบดอก</Text>
                                 <View style={{ backgroundColor: '#337DF1', paddingHorizontal: 10, paddingVertical: 2, borderRadius: 5 }}>
-                                    <Text style={{ fontFamily: 'Kanit', color: 'white',fontSize:12 }}>{String(numberWithCommas((dataLineInvestAll[dataLineInvestAll.length - 1].y).toFixed(2)))} </Text>
+                                    <Text style={styles.textNumber}>{String(numberWithCommas((dataLineInvestAll[dataLineInvestAll.length - 1].y).toFixed(2)))} </Text>
                                 </View>
                             </View>
                         </View>
-
                     </View>
                 </View>
-
             </View>
         </View>
 
@@ -153,6 +146,7 @@ const styles = StyleSheet.create({
     },
     textBold: {
         fontFamily: 'Kanit-SemiBold'
-    }
+    },
+    textNumber:{ fontFamily: 'Kanit', color: 'white',fontSize:9,textAlign:'center' }
 })
 

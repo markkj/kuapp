@@ -78,7 +78,7 @@ export default function TransactionCotent(props) {
 
                         </View>
                         <View>
-                            <Text style={[styles.text, { fontSize: 16 }]}>{dataMain.data.name}</Text>
+                            <Text style={[styles.text, { fontSize: 14 }]}>{dataMain.data.name}</Text>
                             <Text style={[styles.text, { color: '#898A8D' }]}>{dataMain.data.point} คะแนน</Text>
                         </View>
                     </View>

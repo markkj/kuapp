@@ -79,7 +79,7 @@ const Content = (props) => {
                     <View style={[styles.wrapper]}>
 
                         <View style={[styles.settings, { width: '100%', height: '30%' }]}>
-                            <Text style={[styles.text, { fontSize: 18 }]}>ตั้งค่าข้อมูล</Text>
+                            <Text style={[styles.text, { fontSize: 16 }]}>ตั้งค่าข้อมูล</Text>
                             <View style={{ alignItems: 'flex-end', paddingRight: '10%' }}>
                                 <View style={styles.Boxing}>
                                     <Text style={[styles.text]}>ชื่อแผน</Text>
@@ -93,7 +93,7 @@ const Content = (props) => {
                                 <View style={styles.Boxing}>
                                     <Text style={[styles.text]}>ยอดเงินตั้งต้น</Text>
                                     <TextInput
-                                        style={[styles.inputs, { fontSize: 18 }]}
+                                        style={[styles.inputs, { fontSize: 14 }]}
                                         value='15,000.00'
                                     />
                                     <Text style={[styles.text, styles.unintText]}>บาท</Text>
@@ -103,18 +103,18 @@ const Content = (props) => {
 
                         <View style={[styles.settings, { width: '100%', height: Dimensions.get('window').height / 2.3 }]}>
                             <Text style={[styles.text, { fontSize: 20 }]}>แบ่งสัดส่วน</Text>
-                            <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center',}}>
 
                                 <View style={{ alignItems: 'center', margin: '5%' }}>
                                     {settings}
 
                                 </View>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center'}}>
                                     <Icon3
                                         name="add"
                                         size={30}
                                     />
-                                    <Text style={[styles.text, { fontSize: 18 }]}>เพิ่มสัดส่วน</Text>
+                                    <Text style={[styles.text, { fontSize: 16 }]}>เพิ่มสัดส่วน</Text>
                                 </View>
                             </View>
 
@@ -147,7 +147,8 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     text: {
-        fontFamily: 'Kanit'
+        fontFamily: 'Kanit',
+        fontSize:12,
     },
     header: {
         flexDirection: 'row',
@@ -167,6 +168,6 @@ const styles = StyleSheet.create({
         borderBottomColor: '#337DF1',
         marginHorizontal: '10%',
     },
-    Boxing: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end', width: '80%', marginVertical: '4%' },
-    unintText: { color: '#898A8D', fontSize: 13 },
+    Boxing: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end', width: '80%', marginVertical: '1%' },
+    unintText: { color: '#898A8D', fontSize: 8 },
 })

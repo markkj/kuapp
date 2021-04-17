@@ -41,7 +41,7 @@ const BottomBar = (props) => {
                                         <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                                             <Image
                                                 source={mapping_icon[val.name]}
-                                                style={{ width: 50, height: 50 }}
+                                                style={{ width: 30, height: 30 }}
                                             />
                                             <Text style={[categorySelect == val.name ? styles.categorySelect : styles.categoryUnSelect]}>{val.name}</Text>
                                         </View>
@@ -154,6 +154,6 @@ const styles = StyleSheet.create({
         marginHorizontal: '42.5%',
 
     },
-    categorySelect: { fontFamily: 'Kanit-SemiBold', color: 'black', fontSize: 18, marginTop: 10, borderBottomWidth: 2 },
-    categoryUnSelect: { fontFamily: 'Kanit', fontSize: 16, marginTop: 10, color: 'rgba(0,0,0,0.5)' }
+    categorySelect: { fontFamily: 'Kanit-SemiBold', color: 'black', fontSize: 14, marginTop: 10, borderBottomWidth: 2 },
+    categoryUnSelect: { fontFamily: 'Kanit', fontSize: 12, marginTop: 10, color: 'rgba(0,0,0,0.5)' }
 })
