@@ -18,14 +18,15 @@ const HomeScreen = (props) => {
     //         })
     //         .catch((err) => { console.log(err) })
     // }, []);
+    const data = props.navigation.state.params.data;
 
-    
+    const mapping_icon = props.navigation.state.params.mapping_icon;
     return (
         <View >
 
             <Header {...props} />
-            <Content {...props} />
-            <BottomBar {...props} />
+            <Content {...props} mapping_icon={mapping_icon} data={data} />
+            <BottomBar {...props} mapping_icon={mapping_icon} data={data} />
         </View>
     )
 }

@@ -7,7 +7,8 @@ import BaseScreen from './BaseScreen';
 
 const SubMission = (props) => {
 
-    const data = props.navigation.state.params.data;
+    const data = props.navigation.state.params.pageData;
+    console.log(data);
     const DataMapping = {
         daily: {
             name: "ภารกิจประจำวัน",

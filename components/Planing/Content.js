@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Feather'
 import Icon3 from 'react-native-vector-icons/Ionicons'
@@ -58,7 +58,7 @@ const Content = (props) => {
         </View>
     })
     return (
-        <View style={{padding:20}}> 
+        <View style={{ padding: 20 }}>
             <View style={styles.header}>
                 <Icon
                     name="left"
@@ -67,55 +67,62 @@ const Content = (props) => {
                     style={{ paddingRight: 20 }}
                     onPress={() => props.navigation.goBack()}
                 />
-                <Text style={[styles.text, { color: 'white', fontSize: Dimensions.get('window').width / 17 }]}>
+                <Text style={[styles.text, { color: 'white', fontSize: 22 }]}>
                     {"ปรับแต่งแผน"}
                 </Text>
                 {props.dataComponent}
             </View>
-            <View style={styles.wrapper}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ borderWidth: 1 }}>
+                    <View style={[styles.wrapper]}>
 
-                <View style={[styles.settings, { width: '100%', height: '30%' }]}>
-                    <Text style={[styles.text, { fontSize: Dimensions.get('window').width / 20 }]}>ตั้งค่าข้อมูล</Text>
-                    <View style={{ alignItems: 'flex-end', paddingRight: '10%' }}>
-                        <View style={styles.Boxing}>
-                            <Text style={[styles.text]}>ชื่อแผน</Text>
-                            <TextInput
-                                style={styles.inputs}
-                                value='บริหารการเงิน'
-                            />
-                            <Text style={[styles.text, styles.unintText, { color: 'white' }]}>บาท</Text>
+                        <View style={[styles.settings, { width: '100%', height: '30%' }]}>
+                            <Text style={[styles.text, { fontSize: 18 }]}>ตั้งค่าข้อมูล</Text>
+                            <View style={{ alignItems: 'flex-end', paddingRight: '10%' }}>
+                                <View style={styles.Boxing}>
+                                    <Text style={[styles.text]}>ชื่อแผน</Text>
+                                    <TextInput
+                                        style={styles.inputs}
+                                        value='บริหารการเงิน'
+                                    />
+                                    <Text style={[styles.text, styles.unintText, { color: 'white' }]}>บาท</Text>
+                                </View>
+
+                                <View style={styles.Boxing}>
+                                    <Text style={[styles.text]}>ยอดเงินตั้งต้น</Text>
+                                    <TextInput
+                                        style={[styles.inputs, { fontSize: 18 }]}
+                                        value='15,000.00'
+                                    />
+                                    <Text style={[styles.text, styles.unintText]}>บาท</Text>
+                                </View>
+                            </View>
                         </View>
 
-                        <View style={styles.Boxing}>
-                            <Text style={[styles.text]}>ยอดเงินตั้งต้น</Text>
-                            <TextInput
-                                style={[styles.inputs, { fontSize: 18 }]}
-                                value='15,000.00'
-                            />
-                            <Text style={[styles.text, styles.unintText]}>บาท</Text>
+                        <View style={[styles.settings, { width: '100%', height: Dimensions.get('window').height / 2.3 }]}>
+                            <Text style={[styles.text, { fontSize: 20 }]}>แบ่งสัดส่วน</Text>
+                            <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
+
+                                <View style={{ alignItems: 'center', margin: '5%' }}>
+                                    {settings}
+
+                                </View>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <Icon3
+                                        name="add"
+                                        size={30}
+                                    />
+                                    <Text style={[styles.text, { fontSize: 18 }]}>เพิ่มสัดส่วน</Text>
+                                </View>
+                            </View>
+
+
                         </View>
                     </View>
-                </View>
-                <View style={[styles.settings, { width: '100%', height: Dimensions.get('window').height / 2.3 }]}>
-                    <Text style={[styles.text, { fontSize: Dimensions.get('window').width / 20 }]}>แบ่งสัดส่วน</Text>
-                    <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
-
-                        <View style={{ alignItems: 'center', margin: '5%' }}>
-                            {settings}
-
-                        </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Icon3
-                                name="add"
-                                size={30}
-                            />
-                            <Text style={[styles.text, { fontSize: 18 }]}>เพิ่มสัดส่วน</Text>
-                        </View>
-                    </View>
-
-
-                </View>
-            </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
         </View>
 
     )

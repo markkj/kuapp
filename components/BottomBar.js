@@ -1,28 +1,86 @@
-import React from 'react'
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, TouchableWithoutFeedback, LayoutAnimation, Platform, UIManager, Animated, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import { LinearGradient } from 'expo-linear-gradient';
+import AddTransaction from './AddTransaction';
+
 const BottomBar = (props) => {
 
+    const mapping_icon = props.mapping_icon
+    const data = props.data
+    const [isExpand, setIsExpand] = useState(false)
+    const [categorySelect, setCategorySelect] = useState(props.name ? props.name : data.dataList[0].name)
+    if (Platform.OS === 'android') {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+    const changeLayout = () => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setIsExpand(!isExpand);
+    }
+    let showAddingView = null
+
+    if (isExpand) {
+        showAddingView = <View style={{ height: '100%', width: '100%', zIndex: 2, elevation: 200, backgroundColor: 'rgba(0,0,0,0.5)' }}>
+            <TouchableWithoutFeedback onPress={() => changeLayout()}>
+                <View style={{ height: '35%' }}>
+
+                </View>
+            </TouchableWithoutFeedback>
+            <View style={{ height: '100%', backgroundColor: 'white', borderTopRightRadius: 40, borderTopLeftRadius: 40, overflow: 'hidden', zIndex: 3 }}>
+                <View style={{ borderWidth: 0, marginHorizontal: 50, marginVertical: 20, paddingTop: 20 }}>
+                    <ScrollView
+                        horizontal={true}
+                        contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}
+                        style={{ borderWidth: 0, width: '100%' }}
+                    >
+                        {
+                            data.dataList.map((val, key) => {
+                                return (
+                                    <TouchableOpacity onPress={() => setCategorySelect(val.name)} key={key}>
+                                        <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                                            <Image
+                                                source={mapping_icon[val.name]}
+                                                style={{ width: 50, height: 50 }}
+                                            />
+                                            <Text style={[categorySelect == val.name ? styles.categorySelect : styles.categoryUnSelect]}>{val.name}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+
+                                )
+                            })
+                        }
+                    </ScrollView>
+                </View>
+                <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
+                    <AddTransaction name={categorySelect} onExist={changeLayout}/>
+                </View>
+            </View>
+        </View>
+    }
     return (
-        
-        <View style={styles.wrapper}>
-            <View style={styles.addButton}>
+
+
+        <View style={[styles.wrapper, isExpand ? { top: 0, height: '100%' } : {}]}>
+            {
+                showAddingView
+            }
+            <View style={isExpand ? { height: 0, width: 0 } : styles.addButton}>
                 <LinearGradient
                     colors={['#337DF1', '#00AEEE']}
-                    style={{ width: 55, height: 55, borderRadius: 55 / 2 }}
+                    style={isExpand ? { height: 0, width: 0 } : { width: 55, height: 55, borderRadius: 55 / 2 }}
                 >
                     <Icon2
                         name="add"
                         size={50}
-                        color='white'
+                        color={'white'}
                         style={{ padding: 2 }}
+                        onPress={() => changeLayout()}
                     />
                 </LinearGradient>
 
             </View>
-            <View style={styles.container}>
+            <View style={isExpand ? { height: 0, width: 0 } : styles.container}>
                 <TouchableOpacity onPress={() => props.navigation.navigate('Home')}>
                     <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                         <Icon
@@ -76,7 +134,7 @@ const styles = StyleSheet.create({
         shadowRadius: 16.00,
         elevation: 17,
         paddingHorizontal: 80,
-        paddingTop:5,
+        paddingTop: 5,
     },
     normalText: {
         fontFamily: 'Kanit',
@@ -91,10 +149,11 @@ const styles = StyleSheet.create({
     addButton: {
         position: 'absolute',
         bottom: 2,
-        elevation: 20,
-        zIndex: 2,
+        elevation: 200,
+        zIndex: 9,
         marginHorizontal: '42.5%',
 
     },
-
+    categorySelect: { fontFamily: 'Kanit-SemiBold', color: 'black', fontSize: 18, marginTop: 10, borderBottomWidth: 2 },
+    categoryUnSelect: { fontFamily: 'Kanit', fontSize: 16, marginTop: 10, color: 'rgba(0,0,0,0.5)' }
 })

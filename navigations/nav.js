@@ -219,7 +219,6 @@ const styles = StyleSheet.create({
 const DrawerNavigator = createDrawerNavigator({
     Home: {
         screen: stackNav,
-        navigationOptions: { headerShown: false }
     },
     Result: {
         screen: ResultScreen,

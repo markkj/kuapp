@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions, ScrollView, LayoutAnimation, Platfo
 import Icon from 'react-native-vector-icons/Entypo';
 import numberWithCommas from '../../utils/Functional';
 
+
 export default function TransactionCotent(props) {
     const [dataTransaction, setDataTransaction] = useState({ data: props.dataTransaction, isReloading: false })
     const [dataMain, setDataMain] = useState({ data: props.main, isReloading: false })
@@ -137,7 +138,7 @@ export default function TransactionCotent(props) {
                                     return (
                                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, borderWidth: 0, height: 55 }} key={key}>
                                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                <View style={{ marginRight: 20, borderRadius: 30 / 2, width: 30, height: 30, backgroundColor: '#F6D55C' }}>
+                                                <View style={{ marginRight: 10, borderRadius: 30 / 2, width: 30, height: 30, backgroundColor: '#F6D55C' }}>
 
                                                 </View>
                                                 <View>

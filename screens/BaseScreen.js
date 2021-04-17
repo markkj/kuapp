@@ -6,7 +6,9 @@ import BottomBar from '../components/BottomBar';
 
 
 const BaseScreen = (props) => {
-
+    const nameScren = props.name
+    const data = props.navigation.state.params.data;
+    const mapping_icon = props.navigation.state.params.mapping_icon;
 
     return (
         <View style={styles.container}>
@@ -18,7 +20,7 @@ const BaseScreen = (props) => {
                 {props.contentComponent}
 
             </LinearGradient>
-            <BottomBar {...props} />
+            <BottomBar {...props} mapping_icon={mapping_icon} data={data} name={nameScren}/>
         </View>
 
 

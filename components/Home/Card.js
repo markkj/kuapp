@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, TouchableWithoutFeedback  } from 'react-native'
 import { ProgressBar } from 'react-native-multicolor-progress-bar';
 import numberWithCommas from '../../utils/Functional';
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -11,42 +11,46 @@ const Card = (props) => {
     ]
 
     return (
-        <View style={styles.container}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15 }}>
-                <Image
-                    style={{ height: Dimensions.get('window').height / 13, width: Dimensions.get('window').height / 13 }}
-                    source={props.icon}
-                />
+        <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Cost', { data: data })}>
 
-                <View style={styles.cycleNav}>
-                    <Icon
-                        name="navigate-next"
-                        size={30}
-                        onPress={() => props.navigation.navigate('Cost', { data: data })}
+
+            <View style={styles.container}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15 }}>
+                    <Image
+                        style={{ height: Dimensions.get('window').height / 13, width: Dimensions.get('window').height / 13 }}
+                        source={props.icon}
                     />
+
+                    <View style={styles.cycleNav}>
+                        <Icon
+                            name="navigate-next"
+                            size={30}
+                            onPress={() => props.navigation.navigate('Cost', { pageData: data })}
+                        />
+                    </View>
+                </View>
+                <View style={styles.textData}>
+                    <View>
+                        <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>
+                            {data.name}
+                        </Text>
+                        <Text style={{ fontFamily: 'Kanit', fontSize: 15, lineHeight: 16, }}>
+                            {numberWithCommas(data.present)}  / {numberWithCommas(data.value)}
+                        </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 4 }}>
+                        <ProgressBar
+                            arrayOfProgressObjects={progressBarData}
+                            backgroundBarStyle={{
+                                backgroundColor: data.present === data.value ? data.color : data.color2,
+                                height: Dimensions.get('window').height * 0.018,
+                                width: Dimensions.get('window').width * 0.33
+                            }}
+                        />
+                    </View>
                 </View>
             </View>
-            <View style={styles.textData}>
-                <View>
-                    <Text style={{ fontFamily: 'Kanit', fontSize: 15 }}>
-                        {data.name}
-                    </Text>
-                    <Text style={{ fontFamily: 'Kanit', fontSize: 15, lineHeight: 16, }}>
-                        {numberWithCommas(data.present)}  / {numberWithCommas(data.value)}
-                    </Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 4 }}>
-                    <ProgressBar
-                        arrayOfProgressObjects={progressBarData}
-                        backgroundBarStyle={{
-                            backgroundColor: data.present === data.value ? data.color : data.color2,
-                            height: Dimensions.get('window').height * 0.018,
-                            width: Dimensions.get('window').width * 0.33
-                        }}
-                    />
-                </View>
-            </View>
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 

@@ -8,7 +8,7 @@ import BaseScreen from './BaseScreen';
 
 const CostScreen = (props) => {
     
-    const data = props.navigation.state.params.data;
+    const data = props.navigation.state.params.pageData;
     let showContent = null
     if(data.name == "ค่าใช้จ่าย"){
         showContent = <CostContent {...props} data={data} />
@@ -20,7 +20,7 @@ const CostScreen = (props) => {
     
     return (
 
-        <BaseScreen {...props} contentComponent={showContent} />
+        <BaseScreen {...props} contentComponent={showContent} name={data.name}/>
 
 
     )

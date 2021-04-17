@@ -56,7 +56,7 @@ const List = (props) => {
 
     }
     return (
-        <ScrollView style={{ marginBottom: '45%' }}>
+        <ScrollView style={{ marginBottom: '54%' }}>
             {
                 dataList.map(data => {
                     let total_in = null

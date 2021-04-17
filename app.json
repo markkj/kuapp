@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package":"com.raise.money"
+      "package": "com.khajohnyos.raisemoney"
     },
     "web": {
       "favicon": "./assets/favicon.png"
